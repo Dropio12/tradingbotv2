@@ -219,6 +219,6 @@ if (shortCondition)
 strategy.entry("My Short Entry Id", strategy.short)
 switch
 strategy.position_avg_price * 1.09 and ta.rsi(close, 70) = > strategy.close("My Long Entry Id")
-strategy.position_avg_price * 1.10 and ta.rsi(close, 30) = > strategy.close("My Long Entry Id")/////
+strategy.position_avg_price * 1.10 and ta.rsi(close, 30) = > strategy.close("My Long Entry Id")///////loppopd
 
 
