@@ -221,5 +221,53 @@ switch
 strategy.position_avg_price * 1.09 and ta.rsi(close, 70) = > strategy.close("My Long Entry Id")
 strategy.position_avg_price * 1.10 and ta.rsi(close, 25) = > strategy.close("My Long Entry Id")
 //new trad
+#include <iostream>
+#include <vector>
+
+const int SMA_PERIOD = 20;
+const int RSI_PERIOD = 14;
+const int RSI_BUY_THRESHOLD = 20;
+const int RSI_SELL_THRESHOLD = 65;
+
+std::vector<double> prices;
+
+double getSMA() {
+    double sum = 0;
+    for (int i = prices.size() - SMA_PERIOD; i < prices.size(); i++) {
+        sum += prices[i];
+    }
+    return sum / SMA_PERIOD;
+}
+
+double getRSI() {
+    double avgGain = 0, avgLoss = 0;
+    for (int i = prices.size() - RSI_PERIOD; i < prices.size(); i++) {
+        double change = prices[i] - prices[i - 1];
+        if (change > 0) {
+            avgGain += change;
+        } else {
+            avgLoss -= change;
+        }
+    }
+    avgGain /= RSI_PERIOD;
+    avgLoss /= RSI_PERIOD;
+    double rs = avgGain / avgLoss;
+    return 100 - (100 / (1 + rs));
+}
+
+int main() {
+    // Collect historical prices
+    // ...
+
+    double sma = getSMA();
+    double rsi = getRSI();
+    if (rsi < RSI_BUY_THRESHOLD) {
+        // Buy
+    } else if (rsi > RSI_SELL_THRESHOLD) {
+        // Sell
+    }
+
+    return 0;
+}
 
 
