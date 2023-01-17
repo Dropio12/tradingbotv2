@@ -257,7 +257,7 @@ double getRSI() {
 
 int main() {
     // Collect historical prices
-    // ...
+    // ...lop
 
     double sma = getSMA();
     double rsi = getRSI();
